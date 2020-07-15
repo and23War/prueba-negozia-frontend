@@ -1,0 +1,9 @@
+$headerHeight: 56px;
+#private-header {
+    height: $headerHeight;
+    max-height: $headerHeight;
+}
+
+.shadow-ph {
+    height: $headerHeight;
+}

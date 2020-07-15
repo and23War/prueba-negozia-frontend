@@ -1,0 +1,42 @@
+<!-- Start simple popup -->
+<div bsModal #modal="bs-modal" [ngStyle]="{'background-color': bg}" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    	<!-- Start header -->
+      <div class="modal-header">
+        <h2 class="modal-title text-primary text-center" id="exampleModalLabel">{{ title }}</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- End header -->
+
+      <!-- Start body -->
+      <div class="modal-body">
+				<div class="row">
+					<div class="col content-description" [innerHTML]="description | transformHtml"></div>
+				</div>
+      </div>
+			<!-- End body -->
+
+      <!-- Start footer -->
+      <div class="modal-footer">
+        <div class="w-100">
+          <div class="row my-3" *ngIf="containerLoaders.actions">
+            <div class="col">
+              <app-simple-loader ></app-simple-loader>    
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-right">
+              <button type="button" [disabled]="containerLoaders.actions" class="btn btn-{{ cancelBtn.color }} mr-2" (click)="closeModal();">{{ cancelBtn.text }}</button>
+              <button type="button" [disabled]="containerLoaders.actions" class="btn btn-{{ acceptBtn.color }}" (click)="accept();">{{ acceptBtn.text }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End footer -->
+    </div>
+  </div>
+</div>
+<!-- End simple popup -->

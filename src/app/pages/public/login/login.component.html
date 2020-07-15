@@ -1,0 +1,49 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <div class="col-12 container-login" [ngStyle]="{ 'background-image': 'url(./assets/img/bg-default.png)' }">
+      <div class="row">
+        <div class="col-lg-5 col-md-6 col-sm-10 col login">
+          <div class="row">
+            <!--div class="col-12 text-center mb-4">
+              <div class="logo d-inline-block">
+                <img class="w-100" src="./assets/img/logo.png" alt="" />
+              </div>
+            </div-->
+            <div class="col-12">
+              <div class="title">
+                <h3 class="text-primary text-center">Iniciar sesión</h3>
+              </div>
+            </div>
+            <div class="col-12 mb-2">
+              <hr />
+            </div>
+            <div class="col-12">
+              <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label class="text-dark" for="">Correo electrónico</label>
+                  <input type="text" formControlName="email" class="form-control" placeholder="victor@gmail.com" />
+                </div>
+                <div class="form-group mb-32">
+                  <label class="text-dark" for="">Contraseña</label>
+                  <input type="password" formControlName="password" class="form-control" placeholder="*********" />
+                </div>
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary table-center">
+                      Iniciar sesión
+                    </button>
+                    <div class="col-12 text-center">
+                      <button [routerLink]="['/register']" type="button" class="btn btn-link">
+                        Crear cuenta
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

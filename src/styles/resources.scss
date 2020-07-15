@@ -1,0 +1,68 @@
+.notP{
+    padding: 0px;
+}
+
+.notPt{
+    padding-top: 0px;
+}
+
+.notPb{
+    padding-bottom: 0px;
+}
+
+.notPl{
+    padding-left: 0px;
+}
+
+.notPr{
+    padding-right: 0px;
+}
+
+.notM{
+    margin: 0px;
+}
+
+.notMt{
+    margin-top: 0px;
+}
+
+.notMb{
+    margin-bottom: 0px;
+}
+
+.notMl{
+    margin-left: 0px;
+}
+
+.notMr{
+    margin-right: 0px;
+}
+
+.ov-scroll-horizontal{
+	overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.ov-scroll-vertical{
+	overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.to-ellipsis{
+	overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.bp-img-cover{
+	background-size: cover;
+	background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.not-bi{
+    background-image: none !important;
+}

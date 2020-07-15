@@ -1,0 +1,106 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <div class="col-12 h-100" [ngStyle]="{ 'background-image': 'url(./assets/img/bg-default.png)' }">
+      <div class="col-lg-5 col-md-6 col-sm-10 col register">
+        <div class="row">
+          <div class="col-12">
+            <div class="title">
+              <h3 class="text-primary text-center">Registrarse</h3>
+            </div>
+          </div>
+          <div class="col-12 mb-2">
+            <hr />
+          </div>
+          <div class="col-12">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="">Nombres*</label>
+                    <input class="form-control" placeholder="Victor" formControlName="firstName" />
+                    <app-control-message-input [control]="form.controls.firstName"
+                      [configMessages]="controlField?.messages?.firstName"></app-control-message-input>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="">Apellidos*</label>
+                    <input class="form-control" placeholder="Lopez" formControlName="lastName" />
+                    <app-control-message-input [control]="form.controls.lastName"
+                      [configMessages]="controlField?.messages?.lastName"></app-control-message-input>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group notM">
+                    <label for="">Genero*</label>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" formControlName="sex" [value]="'FEMALE'" checked />
+                      <label class="form-check-label" for="female">
+                        Femenino
+                      </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" formControlName="sex" [value]="'MALE'" />
+                      <label class="form-check-label" for="male">
+                        Masculino
+                      </label>
+                    </div>
+                    <app-control-message-input [control]="form.controls.sex"
+                      [configMessages]="controlField?.messages?.sex"></app-control-message-input>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="">Tipo de teléfono*</label>
+                    <select class="form-control" formControlName="phoneTypeId">
+                      <option *ngFor="let record of phoneTypeList" [value]="record._id">{{ record.name }}</option>
+                    </select>
+                    <app-control-message-input [control]="form.controls.phoneTypeId"
+                      [configMessages]="controlField?.messages?.phoneTypeId"></app-control-message-input>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="">Telefono*</label>
+                    <input class="form-control" placeholder="311XXXXXXX" formControlName="phone" />
+                    <app-control-message-input [control]="form.controls.phone"
+                      [configMessages]="controlField?.messages?.phone"></app-control-message-input>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="">Correo electronico*</label>
+                    <input class="form-control" placeholder="victor@gmail.com" formControlName="email" />
+                    <app-control-message-input [control]="form.controls.email"
+                      [configMessages]="controlField?.messages?.email"></app-control-message-input>
+                  </div>
+                </div>
+                <div class="col-12 mt-2">
+                  <div class="form-group">
+                    <label for="">Contraseña*</label>
+                    <input class="form-control" placeholder="********" formControlName="password" name="password"
+                      type="password" />
+                    <app-control-message-input [control]="form.controls.password"
+                      [configMessages]="controlField?.messages?.password"></app-control-message-input>
+                  </div>
+                </div>
+                <div class="col-12 mt-2">
+                  <app-simple-loader *ngIf="loader"></app-simple-loader>
+                </div>
+                <div class="col-12 text-center">
+                  <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Registrarse</button>
+                </div>
+                <div class="col-12 text-center">
+                  <button [routerLink]="['/login']" type="button" class="btn btn-link">¿Ya tienes cuenta? Inicia
+                    sesión</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

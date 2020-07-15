@@ -1,0 +1,14 @@
+<nav id="private-header" class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['/']">
+    <!--img src="./assets/images/logo/logo.svg" width="30" height="30" class="d-inline-block align-top mr-3" alt=""-->
+    <span class="fa fa-users text-primary mr-2" aria-hidden="true"></span>
+    {{ title }}
+  </a>
+  <div class="row">
+    <div class="col-12">
+      <div class="btn-group" dropdown>
+        <button type="button" class="btn btn-primary " (click)="closeSession()">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+</nav>

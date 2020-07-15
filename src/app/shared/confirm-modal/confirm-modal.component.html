@@ -1,0 +1,26 @@
+<!-- Start client data bonding modal -->
+<app-modal-layout #modalLayout [title]="title">
+  <!-- Start body reference -->
+  <ng-template #bodyContent>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 text-center" [innerHTML]="description | transformHtml"></div>
+      </div>
+    </div>
+  </ng-template>
+  <!-- End body reference -->
+
+  <!-- Start footer reference -->
+  <ng-template #footerContent>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 text-center">
+          <button type="button" class="btn btn-default mr-3" (click)="closeModal()" [disabled]="loader">Cancelar</button>
+          <button type="button" class="btn btn-{{acceptColor}}" (click)="accept()" [disabled]="loader">{{ acceptText }}</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <!-- End footer reference -->
+</app-modal-layout>
+<!-- End client data bonding modal -->

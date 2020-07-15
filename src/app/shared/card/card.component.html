@@ -1,0 +1,36 @@
+<!-- Start container card -->
+<div #appCard class="card">
+  
+  <!-- Start actions -->
+  <div class="content-actions py-2">
+    <div class="row">
+      <div class="col">
+        <div class="mx-1 float-right btn-group" dropdown *ngIf="ellipsisActions.length > 0">
+          <div dropdownToggle class="pointer not-after btn text-center dropdown-toggle text-dark notP" ><span  class="fa fs-24 fa-ellipsis-v"></span></div>
+          <div *dropdownMenu class="dropdown-menu dropdown-primary fix-dropmenu-left">
+            <ng-container *ngFor="let action of ellipsisActions;">
+              <button  class="pointer dropdown-item text-dark" (click)="triggerAction(action.slug);" ><span class="mr-1 fa fa-{{ action.icon }}"></span>{{ action.name }}</button>
+            </ng-container>
+          </div>
+        </div>
+        <ng-container *ngFor="let action of actions;">
+          <button [disabled]="isLocked" class="btn btn-primary text-white text-center btn-circle btn-sm bp-shadow mx-1" (click)="triggerAction(action.slug);" tooltip="{{ action.name }}" ><span  class="fa fa-{{ action.icon }}"></span></button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <!-- End actions -->
+  <!-- Start card image -->
+  <img class="img-fluid" src="{{ properties.srcImage }}" alt="Card image cap">
+  <!-- End card image -->
+
+  <!-- Start card information -->
+  <div class="card-body border-top">
+    <h4 class="card-title">{{ properties.title }}</h4>
+    <div class="card-date mb-3">{{ properties.updated | date:'longDate' }}</div>
+    <p class="card-text">{{ properties.description }}</p>
+    <button [disabled]="isLocked" (click)="triggerAction('redirect');" class="btn btn-sm btn-primary" type="button">{{ properties.textButton? properties.textButton : 'Ver más' }}</button>
+  </div>
+  <!-- End card information -->
+</div>
+<!-- End container card -->

@@ -1,0 +1,65 @@
+<form novalidate [formGroup]="form" (ngSubmit)="onSubmit()" >
+  <div class="row">
+	<ng-container *ngFor="let f of config.fields;">
+    <ng-container *ngIf="!f.hide">
+  		<ng-container [ngSwitch]="f.type">
+        <div class=" {{ f.classes? f.classes : 'col-12 col-sm-12 col-md-12 col-lg-12' }}">
+    			<div class="form-group">
+    				<label for="" *ngIf="!f.removeLabel" class="font-weight-bold text-dark mr-2" >{{ f.name }}</label>
+        		<ng-container *ngSwitchCase="'text'" >
+        			<input type="text" formControlName="{{f.field}}" class="form-control" placeholder="{{ f.placeholder? f.placeholder : f.name }}"(change)="onChange($event, f)" >
+        		</ng-container>
+            <ng-container *ngSwitchCase="'select'" >
+              <ng-container *ngIf="f.attach == undefined">
+                <select formControlName="{{f.field}}" class="form-control" (change)="onChange($event, f)" >
+                  <ng-container *ngFor="let o of (f.options.isAttached? f.options.attachedData : f.options.data);">
+                    <option [value]="o[f.options.value]">{{ o[f.options.show] }}</option>
+                  </ng-container>
+                </select>
+              </ng-container>
+              <ng-container *ngIf="f.attach != undefined">
+                <select formControlName="{{f.field}}" class="form-control" (change)="onChange($event, f, true)">
+                  <ng-container *ngFor="let o of f.options.data;">
+                    <option [value]="o[f.options.value]">{{ o[f.options.show] }}</option>
+                  </ng-container>
+                </select>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="'password'" >
+              <input type="password" formControlName="{{f.field}}" class="form-control" placeholder="{{ f.placeholder? f.placeholder : f.name }}"(change)="onChange($event, f)" >
+            </ng-container>
+            <ng-container *ngSwitchCase="'checkbox'" >
+              <input type="checkbox" formControlName="{{f.field}}" class="" placeholder="{{ f.placeholder? f.placeholder : f.name }}"(change)="onChange($event, f)" >
+            </ng-container>
+            <ng-container *ngSwitchCase="'textarea'" >
+                <textarea  formControlName="{{f.field}}"  class="form-control" placeholder="{{ f.placeholder? f.placeholder : f.name }}" (change)="onChange($event, f)" ></textarea>
+            </ng-container>
+            <ng-container *ngSwitchCase="'date'" >
+                <input type="text" formControlName="{{f.field}}" class="form-control"  placeholder="{{ f.placeholder? f.placeholder : f.name }}"  bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD', containerClass: 'theme-dark-blue' }" placement="{{ f.placement? f.placement : 'bottom' }}"  (change)="onChange($event, f)" >
+            </ng-container>
+            <ng-container *ngSwitchCase="'time'" >
+                <timepicker formControlName="{{f.field}}" ></timepicker>
+                <!--input type="text" formControlName="{{f.field}}" class="form-control"  placeholder="{{ f.name }}"  bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD', containerClass: 'theme-dark-blue' }" placement="{{ f.placement? f.placement : 'bottom' }}"  -->
+            </ng-container>
+        		<!--ng-container *ngSwitchCase="'wiziwig'" >
+        				<app-ngx-editor  [toolbar]="ngxConfig.toolbar" formControlName="{{f.field}}" placeholder="Escribir..." [height]="ngxConfig.height" [spellcheck]="true" ></app-ngx-editor>
+        		</ng-container-->
+    		    <app-control-message-input [control]="form.controls[f.field]" [configMessages]="f.configMessages" ></app-control-message-input>
+    	    </div>
+        </div>
+      </ng-container>
+    </ng-container>
+	</ng-container>
+  </div>
+  <!-- Start Input submit -->
+  <input type="submit" [disabled]="!form.valid" class="invisible">
+  <!-- End input submit -->
+  <div class="row" *ngIf="!config.buttonCancel.remove || !config.buttonAction.remove">
+    <div class="col">
+      <div class="form-group text-right">
+        <button *ngIf="!config.buttonCancel.remove" type="button" class="btn {{ config.buttonCancel.classes? config.buttonCancel.classes : 'btn-muted' }}" data-dismiss="modal" [disabled]="config.formLoader" (click)="cancel();">{{ config.buttonCancel.text? config.buttonCancel.text : 'Cancelar' }}</button>
+        <button *ngIf="!config.buttonAction.remove" type="submit" [disabled]="!form.valid" class="btn {{ config.buttonAction.classes? config.buttonAction.classes : 'btn-outline-secondary' }}">{{ config.buttonAction.text? config.buttonAction.text : 'Guardar' }}</button>
+      </div>
+    </div>
+  </div>
+</form>

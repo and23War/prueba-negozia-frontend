@@ -1,0 +1,40 @@
+<!-- Start header -->
+<div class="modal-header">
+  <!-- Start header reference -->
+  <ng-template [ngIf]="headerContentTmpl" [ngIfElse]="refHeaderDefault">
+    <ng-container *ngTemplateOutlet="headerContentTmpl"></ng-container>
+  </ng-template>
+  <!-- End header reference -->
+  
+  <!-- Start default header -->  
+  <ng-template #refHeaderDefault>
+    <h4 class="modal-title w-100 text-center font-weight-bold text-primary">{{title}}</h4>
+  </ng-template>
+  <!-- End default header -->
+  <ng-template></ng-template>
+
+  <!-- Start close button -->
+  <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <!-- End close button -->
+</div>
+<!-- End header -->
+
+<!-- Start body -->
+<div class="modal-body">
+  <!-- Start body reference -->
+  <ng-template [ngIf]="bodyContentTmpl">
+    <ng-container *ngTemplateOutlet="bodyContentTmpl"></ng-container>
+  </ng-template>
+  <!-- End body reference -->
+</div>
+<!-- End body -->
+
+<!-- Start footer reference -->
+<ng-template [ngIf]="footerContentTmpl">
+  <div class="modal-footer">
+    <ng-container *ngTemplateOutlet="footerContentTmpl"></ng-container>
+  </div>
+</ng-template>
+<!-- End footer reference -->

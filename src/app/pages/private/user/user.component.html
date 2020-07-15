@@ -1,0 +1,57 @@
+<div class="container">
+  <!--div class="row pt-3">
+    <div class="col-lg-6 col-12">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text bg-white" id="basic-addon1">
+            <span class="fa fa-search text-muted"></span>
+          </span>
+        </div>
+        <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="search" (keyup)="searchByFilter($event)" />
+      </div>
+    </div>
+  </div-->
+  <div class="row mt-3" *ngIf="!containerLoaders.userList">
+    <div class="col">
+      <app-simple-loader></app-simple-loader>
+    </div>
+  </div>
+
+  <ng-container *ngIf="containerLoaders.userList">
+    <div class="row my-4">
+      <ng-container *ngFor="let item of targetItems">
+        <div class="my-2 col-lg-4 col-md-6 col-sm-12">
+          <div class="card">
+            <h5 class="card-header">
+              <span class="fa fa-{{ item.sex === 'FEMALE' ? 'female' : 'male' }} text-primary mr-2"></span>{{ item.firstName }}
+              {{ item.lastName }}
+              <div class="mx-1 float-right btn-group" dropdown>
+                <div dropdownToggle class="pointer btn text-center dropdown-toggle text-dark not-after notP">
+                  <span class="fa fs-24 fa-ellipsis-v"></span>
+                </div>
+                <div *dropdownMenu class="dropdown-menu dropdown-primary">
+                  <button class="pointer dropdown-item text-dark" (click)="openManage(item)"><span class="mr-1 fa fa-pencil"></span>Editar</button>
+                </div>
+              </div>
+            </h5>
+            <div class="card-body">
+              <div class=""><span class="fa fa-envelope text-primary mr-1"></span> {{ item.email }}</div>
+              <div class=""><span class="fa fa-phone text-primary mr-1"></span>{{ item.phoneType?.name }}: {{ item.phone }}</div>
+              <div class=""><span class="fa fa-calendar text-primary mr-1"></span>Creado: {{ item.createdAt | date: 'MMMM d, y' }}</div>
+              <div class="">
+                <span class="fa fa-calendar text-primary mr-1"></span>Actualizado: {{ item.updatedAt | date: 'MMMM d, y' | defaultText }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="col" *ngIf="targetItems.length == 0">
+        <div class="card">
+          <div class="card-body">
+            Sin resultados encontrados.
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
