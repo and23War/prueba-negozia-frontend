@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  backendUrl: 'http://localhost:3331/api',
+  backendUrl: 'https://prueba-negozia-backend.herokuapp.com/api',
+  prefix: 'NGZ-',
 };
